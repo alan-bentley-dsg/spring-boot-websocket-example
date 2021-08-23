@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <script>
+            var socket = new WebSocket('ws://' + window.location.host + '/ws-connection-endpoint');
+
+            // Add an event listener for when a connection is open
+            socket.onopen = function() {
+                console.log('WebSocket connection opened. Ready to send messages.');
+            };
+
+            // Add an event listener for when a message is received from the server
+            socket.onmessage = function(message) {
+                console.log('Message received from server: ' + message.data);
+                document.getElementById('serverResponseInput').value = message.data;
+
+            };
+
+            function sendMessage(message) {
+                console.log('sending message: ' + message);
+                socket.send(message);
+
+                document.getElementById('textInput').value = '';
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <div>
+                Enter message to send via WS:
+            </div>
+            <div>
+                <input id="textInput"/>
+            </div>
+            <div>
+                <button onclick="sendMessage(document.getElementById('textInput').value)">Send message</button>
+            </div>
+            <br/>
+            <div>
+                Server response:
+            </div>
+            <div>
+                <input id="serverResponseInput" disabled />
+            </div>
+        </div>
+    </body>
+</html>
