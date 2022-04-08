@@ -1,4 +1,4 @@
-package com.dsg.innovation.ivp.websocketconnectiontest;
+package com.dsg.innovation.ivp.websocketconnectiontest.messaging;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -19,13 +19,12 @@ public class MessageHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         //ws connection opened
         super.afterConnectionEstablished(session);
-        session.sendMessage(new TextMessage("connection succeeded!"));
+        session.sendMessage(new TextMessage("websocket connection succeeded!"));
     }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         //message received
-        System.out.println("message received: " + message.getPayload());
-        session.sendMessage(new TextMessage("message received: "+message.getPayload()));
+        session.sendMessage(new TextMessage(message.getPayload()));
     }
 }

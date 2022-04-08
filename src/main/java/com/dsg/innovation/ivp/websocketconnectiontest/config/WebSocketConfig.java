@@ -1,5 +1,6 @@
-package com.dsg.innovation.ivp.websocketconnectiontest;
+package com.dsg.innovation.ivp.websocketconnectiontest.config;
 
+import com.dsg.innovation.ivp.websocketconnectiontest.messaging.MessageHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
